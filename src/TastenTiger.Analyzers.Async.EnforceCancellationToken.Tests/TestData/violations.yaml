@@ -1,0 +1,360 @@
+- MethodName: "AsyncTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 76 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task AsyncTaskReturningMethodWithoutCancellationToken()
+      {
+          await Task.Delay(1000);
+      }
+    }
+
+- MethodName: "AsyncValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 86 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask AsyncValueTaskReturningMethodWithoutCancellationToken()
+      {
+          await Task.Delay(1000);
+      }
+    }
+
+- MethodName: "TaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 22, 5, 65 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task TaskReturningMethodWithoutCancellationToken()
+      {
+          return Task.CompletedTask;
+      }
+    }
+
+- MethodName: "ValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 75 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask ValueTaskReturningMethodWithoutCancellationToken()
+      {
+          return new ValueTask(Task.CompletedTask);
+      }
+    }
+
+- MethodName: "AsyncGenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 88 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task<int> AsyncGenericTaskReturningMethodWithoutCancellationToken()
+      {
+          await Task.Delay(1000);
+          return 42;
+      }
+    }
+
+- MethodName: "AsyncGenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 38, 5, 98 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask<int> AsyncGenericValueTaskReturningMethodWithoutCancellationToken()
+      {
+          await Task.Delay(1000);
+          return 42;
+      }
+    }
+
+- MethodName: "GenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 77 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task<int> GenericTaskReturningMethodWithoutCancellationToken()
+      {
+          return Task.FromResult(42);
+      }
+    }
+
+- MethodName: "GenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 32, 5, 87 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask<int> GenericValueTaskReturningMethodWithoutCancellationToken()
+      {
+          return new ValueTask<int>(Task.FromResult(42));
+      }
+    }
+
+- MethodName: "AsyncMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 63 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async void AsyncMethodWithoutCancellationToken()
+      {
+          await Task.Delay(1000);
+      }
+    }
+
+- MethodName: "AsyncTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 76 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task AsyncTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          await Task.Delay(parameter);
+      }
+    }
+
+- MethodName: "AsyncValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 86 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask AsyncValueTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          await Task.Delay(parameter);
+      }
+    }
+
+- MethodName: "TaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 22, 5, 65 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task TaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          return Task.CompletedTask;
+      }
+    }
+
+- MethodName: "ValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 75 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask ValueTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          return new ValueTask(Task.CompletedTask);
+      }
+    }
+
+- MethodName: "AsyncGenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 88 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task<int> AsyncGenericTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          await Task.Delay(parameter);
+          return parameter;
+      }
+    }
+
+- MethodName: "AsyncGenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 38, 5, 98 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask<int> AsyncGenericValueTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          await Task.Delay(parameter);
+          return parameter;
+      }
+    }
+
+- MethodName: "GenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 77 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task<int> GenericTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          return Task.FromResult(parameter);
+      }
+    }
+
+- MethodName: "GenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 32, 5, 87 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask<int> GenericValueTaskReturningMethodWithoutCancellationToken(int parameter)
+      {
+          return new ValueTask<int>(Task.FromResult(parameter));
+      }
+    }
+
+- MethodName: "AsyncMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 63 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async void AsyncMethodWithoutCancellationToken(int parameter)
+      {
+          await Task.Delay(parameter);
+      }
+    }
+
+- MethodName: "AsyncTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 76 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task AsyncTaskReturningMethodWithoutCancellationToken(string value, int parameter = 0)
+      {
+          await Task.Delay(parameter);
+      }
+    }
+
+- MethodName: "AsyncValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 86 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask AsyncValueTaskReturningMethodWithoutCancellationToken(string value,
+          int parameter = 0)
+      {
+          await Task.Delay(parameter);
+      }
+    }
+
+- MethodName: "TaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 22, 5, 65 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task TaskReturningMethodWithoutCancellationToken(string value, int parameter = 0)
+      {
+          return Task.CompletedTask;
+      }
+    }
+
+- MethodName: "ValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 75 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask ValueTaskReturningMethodWithoutCancellationToken(string value, int parameter = 0)
+      {
+          return new ValueTask(Task.CompletedTask);
+      }
+    }
+
+- MethodName: "AsyncGenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 33, 5, 88 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async Task<int> AsyncGenericTaskReturningMethodWithoutCancellationToken(string value,
+          int parameter = 0)
+      {
+          await Task.Delay(parameter);
+          return parameter;
+      }
+    }
+
+- MethodName: "AsyncGenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 38, 5, 98 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async ValueTask<int> AsyncGenericValueTaskReturningMethodWithoutCancellationToken(string value,
+          int parameter = 0)
+      {
+          await Task.Delay(parameter);
+          return parameter;
+      }
+    }
+
+- MethodName: "GenericTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 27, 5, 77 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static Task<int> GenericTaskReturningMethodWithoutCancellationToken(string value, int parameter = 0)
+      {
+          return Task.FromResult(parameter);
+      }
+    }
+
+- MethodName: "GenericValueTaskReturningMethodWithoutCancellationToken"
+  Position: [ 5, 32, 5, 87 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static ValueTask<int> GenericValueTaskReturningMethodWithoutCancellationToken(string value,
+          int parameter = 0)
+      {
+          return new ValueTask<int>(Task.FromResult(parameter));
+      }
+    }
+
+- MethodName: "AsyncMethodWithoutCancellationToken"
+  Position: [ 5, 28, 5, 63 ]
+  FileContent: |
+    using System.Threading.Tasks;
+
+    public class Program
+    {
+      public static async void AsyncMethodWithoutCancellationToken(string value, int parameter = 0)
+      {
+          await Task.Delay(parameter);
+      }
+    }

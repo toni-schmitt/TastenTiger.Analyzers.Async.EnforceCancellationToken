@@ -1,0 +1,8 @@
+<Solution>
+    <Project
+            Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken.Sample\TastenTiger.Analyzers.Async.EnforceCancellationToken.Sample.csproj"/>
+    <Project
+            Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests\TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests.csproj"/>
+    <Project
+            Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken\TastenTiger.Analyzers.Async.EnforceCancellationToken.csproj"/>
+</Solution>
