@@ -16,7 +16,7 @@ jobs:
         run: dotnet --info
 
       - name: Restore dependencies
-        run: ls -la && dotnet restore 
+        run: dotnet restore 
 
       - name: Build
         run: dotnet build --configuration Release --no-restore 
