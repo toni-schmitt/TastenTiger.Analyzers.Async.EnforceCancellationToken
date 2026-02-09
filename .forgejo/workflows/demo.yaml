@@ -1,7 +1,0 @@
-on: [push]
-jobs:
-  test:
-    runs-on: codeberg-tiny
-    steps:
-      - uses: actions/checkout@v4
-      - run: dotnet test
