@@ -16,11 +16,11 @@ jobs:
         run: ls -la
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
 
       - name: Test
-        run: dotnet test
+        run: dotnet test TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
     
