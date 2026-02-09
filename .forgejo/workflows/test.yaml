@@ -10,17 +10,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
 
-      - name: List
-        run: ls -la
+      - name: Verify .NET Installation
+        run: dotnet --info
 
       - name: Restore dependencies
-        run: dotnet restore TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
+        run: ls -la && dotnet restore 
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
+        run: dotnet build --configuration Release --no-restore 
 
       - name: Test
-        run: dotnet test TastenTiger.Analyzers.Async.EnforceCancellationToken.slnx
+        run: dotnet test 
     
