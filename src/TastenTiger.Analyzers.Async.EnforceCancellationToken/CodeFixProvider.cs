@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace TastenTiger.Analyzers.Async.EnforceCancellationToken;
 
 /// <summary>
-///     A code fix provider that automatically adds an optional CancellationToken as last parameter to any Method that
+///     A code fix provider that automatically adds an optional CancellationToken as the last parameter to any Method that
 ///     violates TA0001
 /// </summary>
 [ExportCodeFixProvider(LanguageNames.CSharp,
@@ -20,7 +20,7 @@ namespace TastenTiger.Analyzers.Async.EnforceCancellationToken;
 public class CodeFixProvider : Microsoft.CodeAnalysis.CodeFixes.CodeFixProvider
 {
     public sealed override ImmutableArray<string> FixableDiagnosticIds { get; } =
-        ImmutableArray.Create(SyntaxAnalyzer.DiagnosticId);
+        [SyntaxAnalyzer.DiagnosticId];
 
     public override FixAllProvider? GetFixAllProvider()
     {

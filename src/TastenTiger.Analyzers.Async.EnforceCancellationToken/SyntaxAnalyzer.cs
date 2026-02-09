@@ -44,7 +44,7 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
         if (method.MethodKind is not MethodKind.Ordinary)
             return;
 
-        if (method.IsOverride || method.IsVirtual || method.ExplicitInterfaceImplementations.Length > 0)
+        if (method.IsOverride || method.ExplicitInterfaceImplementations.Length > 0)
             return;
 
         if (IsTaskReturning(method) is false && method.IsAsync is false)
