@@ -3,6 +3,10 @@
 A Roslyn analyzer that ensures asynchronous methods, those returning `Task` or `ValueTask`, include a
 `CancellationToken` as their final parameter.
 
+<a href="https://codeberg.org/toni-schmitt/TastenTiger.Analyzers.Async.EnforceCancellationToken">
+    <img alt="Get it on Codeberg" src="https://get-it-on.codeberg.org/get-it-on-blue-on-white.png" height="60">
+</a>
+
 ## Why enforce `CancellationToken` usage?
 
 Asynchronous operations often involve I/O, long-running work, or external dependencies. When a caller no longer needs
