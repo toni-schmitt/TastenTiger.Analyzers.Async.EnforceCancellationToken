@@ -1,0 +1,31 @@
+name: Bug Report
+about: File a bug report
+title: '[Bug]: '
+ref: 'main'
+labels:
+  - bug
+  - 'help needed'
+body:
+  - type: checkboxes
+    id: existing-issue
+    attributes:
+      label: I have searched for existing Issues
+      description: It is important to search the issue tracker for similar Issues beforehand. Please confirm you have done so
+      options:
+        - label: I have searched to the best of my abilities for similar existing Issues
+          required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What is broken?
+      placeholder: ... broke while doing ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes: 
+      label: What was the expected behavior?
+      description: Please provide as much detail as possible. What version you were on, what output was produced and so on.
+      placeholder: I expected ...
+    validations:
+      required: true
