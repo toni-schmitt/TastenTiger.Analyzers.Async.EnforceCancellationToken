@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using Xunit;
@@ -9,7 +5,7 @@ using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
     TastenTiger.Analyzers.Async.EnforceCancellationToken.SyntaxAnalyzer,
-    TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFixProvider>;
+    TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.CodeFixProvider>;
 
 namespace TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests;
 
@@ -46,6 +42,6 @@ public class CodeFixProviderTests
         var expected = Verifier.Diagnostic()
             .WithLocation(expectedLinePosition.StartLinePosition.Line, expectedLinePosition.StartLinePosition.Character)
             .WithArguments(methodName);
-        await Verifier.VerifyCodeFixAsync(violatingTestCode, expected, complyingTestCode).ConfigureAwait(false);
+        await Verifier.VerifyCodeFixAsync(violatingTestCode, expected, complyingTestCode);
     }
 }

@@ -2,29 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
 
         <IncludeBuildOutput>false</IncludeBuildOutput>
-
-        <PackageId>*$(MSBuildProjectFile)*</PackageId>
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageId>TastenTiger.Analyzers.Async.EnforceCancellationToken</PackageId>
-        <Version>1.0.0</Version>
-        <Authors>TastenTiger</Authors>
-        <AssemblyName>TastenTiger.Analyzers.Async.EnforceCancellationToken</AssemblyName>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://codeberg.org/toni-schmitt/TastenTiger.Analyzers.Async.EnforceCancellationToken</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>A Roslyn analyzer that detects async Task- and ValueTask-returning methods missing a CancellationToken parameter, offering diagnostics and automated code fixes.</Description>
-        <PackageTags>async, cancellationtoken, codefix, analyzers</PackageTags>
         <NoPackageAnalysis>true</NoPackageAnalysis>
         <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
         <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -38,7 +23,6 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.0.0"/>
     </ItemGroup>
 
 </Project>

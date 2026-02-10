@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -17,15 +16,14 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
     private static readonly DiagnosticDescriptor Rule = new(
         DiagnosticId,
         "Missing CancellationToken",
-        "{0} is missing an CancellationToken as the last parameter",
+        "{0} is missing a CancellationToken as the last parameter",
         "Usage",
         DiagnosticSeverity.Warning,
         true,
-        "All async or task-returning methods must have an CancellationToken as the last parameter."
+        "All async or task-returning methods must have a CancellationToken as the last parameter."
     );
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        ImmutableArray.Create(Rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = [Rule];
 
     public override void Initialize(AnalysisContext context)
     {

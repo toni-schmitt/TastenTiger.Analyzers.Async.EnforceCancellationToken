@@ -1,14 +1,12 @@
 using System.Collections.Immutable;
 using System.Composition;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace TastenTiger.Analyzers.Async.EnforceCancellationToken;
+namespace TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix;
 
 /// <summary>
 ///     A code fix provider that automatically adds an optional CancellationToken as the last parameter to any Method that

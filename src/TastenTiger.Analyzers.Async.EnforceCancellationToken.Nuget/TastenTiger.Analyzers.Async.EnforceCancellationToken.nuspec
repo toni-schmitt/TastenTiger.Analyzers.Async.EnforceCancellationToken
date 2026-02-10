@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata minClientVersion="2.12">
+        <id>TastenTiger.Analyzers.Async.EnforceCancellationToken</id>
+        <version>$Version$</version>
+        <title>Enforce CancellationTokens on async Methods - [TastenTiger.Analyzers]</title>
+        <authors>$Authors$</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <license type="expression">$License$</license>
+        <licenseUrl>https://licenses.nuget.org/$License$</licenseUrl>
+        <description>$Description$</description>
+        <copyright>$Copyright$</copyright>
+        <repository type="$RepositoryType$" url="$RepositoryUrl$"/>
+        <projectUrl>$RepositoryUrl$</projectUrl>
+        <tags>$Tags$</tags>
+        <readme>$Readme$</readme>
+    </metadata>
+    <files>
+        <file target="\" src="..\..\README.md"/>
+
+        <file target="analyzers\dotnet\cs\"
+              src="..\TastenTiger.Analyzers.Async.EnforceCancellationToken\bin\$Configuration$\netstandard2.0\TastenTiger.Analyzers.Async.EnforceCancellationToken.dll"/>
+        <file target="analyzers\dotnet\cs\"
+              src="..\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix\bin\$Configuration$\netstandard2.0\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.dll"/>
+    </files>
+</package>

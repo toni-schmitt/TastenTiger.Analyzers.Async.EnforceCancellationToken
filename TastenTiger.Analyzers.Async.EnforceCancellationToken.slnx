@@ -1,5 +1,9 @@
 <Solution>
     <Project
+            Path="src/TastenTiger.Analyzers.Async.EnforceCancellationToken.Nuget/TastenTiger.Analyzers.Async.EnforceCancellationToken.Nuget.csproj"/>
+    <Project
+            Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix/TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.csproj"/>
+    <Project
             Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken.Sample\TastenTiger.Analyzers.Async.EnforceCancellationToken.Sample.csproj"/>
     <Project
             Path="src\TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests\TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests.csproj"/>

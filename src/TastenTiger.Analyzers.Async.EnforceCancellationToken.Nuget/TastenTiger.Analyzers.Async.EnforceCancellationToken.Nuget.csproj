@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IsPackable>true</IsPackable>
+        <NoWarn>$(NoWarn);NU5128;RS2008;CS8600;CS8602;CS8604;CS8619;CS8631</NoWarn>
+
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <NuspecFile>TastenTiger.Analyzers.Async.EnforceCancellationToken.nuspec</NuspecFile>
+        <NuspecProperties>
+            Version=$(PackageVersion);
+            Authors=$(Authors);
+            License=$(PackageLicenseExpression);
+            Description=$(Description);
+            Copyright=$(Copyright);
+            RepositoryType=$(RepositoryType);
+            RepositoryUrl=$(RepositoryUrl);
+            Tags=$(PackageTags);
+            Readme=$(PackageReadmeFile);
+
+            Configuration=$(Configuration);
+        </NuspecProperties>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.csproj"/>
+        <ProjectReference Include="..\TastenTiger.Analyzers.Async.EnforceCancellationToken\TastenTiger.Analyzers.Async.EnforceCancellationToken.csproj"/>
+    </ItemGroup>
+</Project>
