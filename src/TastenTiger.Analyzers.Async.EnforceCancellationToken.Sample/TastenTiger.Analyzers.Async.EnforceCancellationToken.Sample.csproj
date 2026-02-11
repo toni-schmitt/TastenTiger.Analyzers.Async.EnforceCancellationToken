@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix\TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.csproj"/>
+        <ProjectReference Include="..\TastenTiger.Analyzers.Async.EnforceCancellationToken.Nuget\TastenTiger.Analyzers.Async.EnforceCancellationToken.Nuget.csproj"/>
         <ProjectReference Include="..\TastenTiger.Analyzers.Async.EnforceCancellationToken\TastenTiger.Analyzers.Async.EnforceCancellationToken.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 

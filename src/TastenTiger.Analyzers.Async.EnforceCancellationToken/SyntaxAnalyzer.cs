@@ -48,6 +48,9 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
         if (method.IsOverride || method.ExplicitInterfaceImplementations.Length > 0)
             return;
 
+        if (method.ExplicitOrImplicitInterfaceImplementations().Length > 0)
+            return;
+
         if (IsTaskReturning(method) is false && method.IsAsync is false)
             return;
 
