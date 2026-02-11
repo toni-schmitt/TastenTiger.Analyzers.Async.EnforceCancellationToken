@@ -23,7 +23,7 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
         "All async or task-returning methods must have a CancellationToken as the last parameter."
     );
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = [Rule];
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
     public override void Initialize(AnalysisContext context)
     {
@@ -37,6 +37,9 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
     private static void Action(SymbolAnalysisContext context)
     {
         if (context.Symbol is not IMethodSymbol method)
+            return;
+
+        if (method.IsImplicitlyDeclared)
             return;
 
         if (method.MethodKind is not MethodKind.Ordinary)

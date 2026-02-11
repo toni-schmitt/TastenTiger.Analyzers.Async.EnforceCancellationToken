@@ -3,7 +3,9 @@
 A Roslyn analyzer that ensures asynchronous methods, those returning `Task` or `ValueTask`, include a
 `CancellationToken` as their final parameter.
 
-[![Get it on Codeberg](https://codeberg.org/Codeberg/GetItOnCodeberg/raw/branch/main/get-it-on-blue-on-white.png)](https://codeberg.org/toni-schmitt/TastenTiger.Analyzers.Async.EnforceCancellationToken)
+[![Get it on Coeberg](./docs/img/get-it-on-codeberg.svg)](https://codeberg.org/toni-schmitt/TastenTiger.Analyzers.Async.EnforceCancellationToken)
+
+[![NuGet Version](https://img.shields.io/nuget/v/TastenTiger.Analyzers.Async.EnforceCancellationToken)](https://www.nuget.org/packages/TastenTiger.Analyzers.Async.EnforceCancellationToken)
 
 ## Why enforce `CancellationToken` usage?
 
