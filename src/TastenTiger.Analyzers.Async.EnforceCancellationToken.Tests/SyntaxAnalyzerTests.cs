@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using Xunit;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
-    TastenTiger.Analyzers.Async.EnforceCancellationToken.SyntaxAnalyzer>;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
+    TastenTiger.Analyzers.Async.EnforceCancellationToken.SyntaxAnalyzer,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests;
 
@@ -39,5 +36,34 @@ public class SyntaxAnalyzerTests
                 expectedLinePosition.EndLinePosition.Line, expectedLinePosition.EndLinePosition.Character)
             .WithArguments(methodName);
         await Verifier.VerifyAnalyzerAsync(testCode, expected);
+    }
+
+    [Fact]
+    public async Task InterfaceImplementation_WithoutCancellationToken_DoesNotAlertDiagnostic()
+    {
+        const string partiallyViolatingCode =
+            """
+            using System.Threading.Tasks;
+
+            interface IViolatingInterface
+            {
+                Task ViolatingAsync();
+            }
+
+            public sealed class ComplyingImplementation : IViolatingInterface
+            {
+                public Task ViolatingAsync()
+                {
+                    return Task.CompletedTask;
+                }
+            }
+
+            """;
+
+        const string methodName = "ViolatingAsync";
+        var expected = Verifier.Diagnostic()
+            .WithSpan(5, 10, 5, 24)
+            .WithArguments(methodName);
+        await Verifier.VerifyAnalyzerAsync(partiallyViolatingCode, expected);
     }
 }

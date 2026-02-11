@@ -3,9 +3,10 @@ using Microsoft.CodeAnalysis.Text;
 using Xunit;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
     TastenTiger.Analyzers.Async.EnforceCancellationToken.SyntaxAnalyzer,
-    TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.CodeFixProvider>;
+    TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix.CodeFixProvider,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace TastenTiger.Analyzers.Async.EnforceCancellationToken.Tests;
 
