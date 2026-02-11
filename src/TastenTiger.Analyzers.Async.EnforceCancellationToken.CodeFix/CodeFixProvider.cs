@@ -18,7 +18,7 @@ namespace TastenTiger.Analyzers.Async.EnforceCancellationToken.CodeFix;
 public class CodeFixProvider : Microsoft.CodeAnalysis.CodeFixes.CodeFixProvider
 {
     public sealed override ImmutableArray<string> FixableDiagnosticIds { get; } =
-        [SyntaxAnalyzer.DiagnosticId];
+        ImmutableArray.Create(SyntaxAnalyzer.DiagnosticId);
 
     public override FixAllProvider? GetFixAllProvider()
     {

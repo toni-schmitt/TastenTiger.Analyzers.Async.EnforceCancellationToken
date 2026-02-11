@@ -4,7 +4,7 @@ set +ex
 
 dotnet tool install GitVersion.Tool
 
-VERSION=$(dotnet gitversion -showvariable FullSemVer)
+VERSION=${VERSION:-$(dotnet gitversion -showvariable FullSemVer)}
 
 echo "Creating nuget package with version ${VERSION}"
 
