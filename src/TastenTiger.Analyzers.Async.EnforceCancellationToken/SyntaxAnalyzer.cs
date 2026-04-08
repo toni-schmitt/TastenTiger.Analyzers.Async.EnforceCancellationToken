@@ -39,7 +39,7 @@ public class SyntaxAnalyzer : DiagnosticAnalyzer
         if (context.Symbol is not IMethodSymbol method)
             return;
 
-        if (method.IsImplicitlyDeclared)
+        if (method.IsImplicitlyDeclared || method.Name is "<Main>$")
             return;
 
         if (method.MethodKind is not MethodKind.Ordinary)

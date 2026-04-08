@@ -1,4 +1,7 @@
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Testing;
+using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Text;
 using Xunit;
 using YamlDotNet.Serialization;
@@ -36,6 +39,33 @@ public class SyntaxAnalyzerTests
                 expectedLinePosition.EndLinePosition.Line, expectedLinePosition.EndLinePosition.Character)
             .WithArguments(methodName);
         await Verifier.VerifyAnalyzerAsync(testCode, expected);
+    }
+
+    [Fact]
+    public async Task TopLevelProgram_AsyncEntryPoint_DoesNotAlertDiagnostic()
+    {
+        const string topLevelCode =
+            """
+            await System.Threading.Tasks.Task.Delay(1000);
+            """;
+
+        var test = new CSharpAnalyzerTest<SyntaxAnalyzer, DefaultVerifier>
+        {
+            TestCode = topLevelCode
+        };
+        test.SolutionTransforms.Add((solution, projectId) =>
+        {
+            var project = solution.GetProject(projectId)!;
+            var compilationOptions = ((CSharpCompilationOptions)project.CompilationOptions!)
+                .WithOutputKind(OutputKind.ConsoleApplication);
+            var parseOptions = ((CSharpParseOptions)project.ParseOptions!)
+                .WithLanguageVersion(LanguageVersion.CSharp9);
+            return solution
+                .WithProjectCompilationOptions(projectId, compilationOptions)
+                .WithProjectParseOptions(projectId, parseOptions);
+        });
+
+        await test.RunAsync();
     }
 
     [Fact]
