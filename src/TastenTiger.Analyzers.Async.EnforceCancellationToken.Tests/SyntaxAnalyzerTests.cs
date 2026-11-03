@@ -96,4 +96,161 @@ public class SyntaxAnalyzerTests
             .WithArguments(methodName);
         await Verifier.VerifyAnalyzerAsync(partiallyViolatingCode, expected);
     }
+
+    [Theory]
+    [InlineData("ProtoBuf.Grpc.CallContext")]
+    [InlineData("Other.Type, ProtoBuf.Grpc.CallContext")]
+    [InlineData("  Other.Type ,ProtoBuf.Grpc.CallContext  ")]
+    public async Task ConfiguredAdditionalTypeAsLastParameter_DoesNotAlertDiagnostic(string configuredTypes)
+    {
+        const string code =
+            """
+            using System.Threading.Tasks;
+
+            namespace ProtoBuf.Grpc
+            {
+                public readonly struct CallContext { }
+            }
+
+            public class Service
+            {
+                public Task ComplyingAsync(string request, ProtoBuf.Grpc.CallContext context = default)
+                {
+                    return Task.CompletedTask;
+                }
+            }
+            """;
+        var test = CreateTestWithAdditionalCancellationTokenTypes(code, configuredTypes);
+
+        await test.RunAsync();
+    }
+
+    [Fact]
+    public async Task ConfiguredNestedTypeAsLastParameter_DoesNotAlertDiagnostic()
+    {
+        const string code =
+            """
+            using System.Threading.Tasks;
+
+            namespace Contexts
+            {
+                public class Outer
+                {
+                    public readonly struct Nested { }
+                }
+            }
+
+            public class Service
+            {
+                public Task ComplyingAsync(Contexts.Outer.Nested context)
+                {
+                    return Task.CompletedTask;
+                }
+            }
+            """;
+        var test = CreateTestWithAdditionalCancellationTokenTypes(code, "Contexts.Outer+Nested");
+
+        await test.RunAsync();
+    }
+
+    [Fact]
+    public async Task UnconfiguredTypeAsLastParameter_AlertsDiagnostic()
+    {
+        const string code =
+            """
+            using System.Threading.Tasks;
+
+            namespace ProtoBuf.Grpc
+            {
+                public readonly struct CallContext { }
+            }
+
+            public class Service
+            {
+                public Task ViolatingAsync(ProtoBuf.Grpc.CallContext context = default)
+                {
+                    return Task.CompletedTask;
+                }
+            }
+            """;
+        var test = CreateTestWithAdditionalCancellationTokenTypes(code, "ProtoBuf.Grpc.OtherContext");
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic().WithSpan(10, 17, 10, 31).WithArguments("ViolatingAsync"));
+
+        await test.RunAsync();
+    }
+
+    [Fact]
+    public async Task ConfiguredTypeNotAsLastParameter_AlertsDiagnostic()
+    {
+        const string code =
+            """
+            using System.Threading.Tasks;
+
+            namespace ProtoBuf.Grpc
+            {
+                public readonly struct CallContext { }
+            }
+
+            public class Service
+            {
+                public Task ViolatingAsync(ProtoBuf.Grpc.CallContext context, string request)
+                {
+                    return Task.CompletedTask;
+                }
+            }
+            """;
+        var test = CreateTestWithAdditionalCancellationTokenTypes(code, "ProtoBuf.Grpc.CallContext");
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic().WithSpan(10, 17, 10, 31).WithArguments("ViolatingAsync"));
+
+        await test.RunAsync();
+    }
+
+    [Fact]
+    public async Task DerivedTypeOfConfiguredTypeAsLastParameter_AlertsDiagnostic()
+    {
+        const string code =
+            """
+            using System.Threading.Tasks;
+
+            namespace Contexts
+            {
+                public class BaseContext { }
+
+                public class DerivedContext : BaseContext { }
+            }
+
+            public class Service
+            {
+                public Task ViolatingAsync(Contexts.DerivedContext context)
+                {
+                    return Task.CompletedTask;
+                }
+            }
+            """;
+        var test = CreateTestWithAdditionalCancellationTokenTypes(code, "Contexts.BaseContext");
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic().WithSpan(12, 17, 12, 31).WithArguments("ViolatingAsync"));
+
+        await test.RunAsync();
+    }
+
+    /// <summary>
+    ///     Creates an analyzer test whose .editorconfig accepts <paramref name="configuredTypes" /> in place of a
+    ///     CancellationToken for every source file.
+    /// </summary>
+    /// <param name="code">The source under test.</param>
+    /// <param name="configuredTypes">The raw value of the additional cancellation token types option.</param>
+    /// <returns>A test without expected diagnostics; callers add them where the code violates the rule.</returns>
+    private static CSharpAnalyzerTest<SyntaxAnalyzer, DefaultVerifier> CreateTestWithAdditionalCancellationTokenTypes(
+        string code, string configuredTypes)
+    {
+        var test = new CSharpAnalyzerTest<SyntaxAnalyzer, DefaultVerifier> { TestCode = code };
+        test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
+            $"""
+             root = true
+
+             [*]
+             {SyntaxAnalyzer.AdditionalCancellationTokenTypesOptionKey} = {configuredTypes}
+             """));
+        return test;
+    }
 }

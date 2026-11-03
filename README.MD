@@ -45,3 +45,25 @@ public async Task DoWorkAsync(CancellationToken cancellationToken = default) // 
 
 > For more examples see `TastenTiger.Analyzers.Async.EnforceCancellationToken.Sample.Examples.cs`
 
+## Configuration
+
+### Accepting other types in place of `CancellationToken`
+
+Some frameworks pass the cancellation token wrapped in their own context type, such as `ProtoBuf.Grpc.CallContext` or
+`Grpc.Core.ServerCallContext`. List these types in your `.editorconfig` (or `.globalconfig`) to accept them as the last
+parameter:
+
+```ini
+[*.cs]
+dotnet_diagnostic.TA0001.additional_cancellation_token_types = ProtoBuf.Grpc.CallContext, Grpc.Core.ServerCallContext
+```
+
+- The value is a comma-separated list of full type names, as reported by `Type.FullName`: nested types use `+`
+  (`Outer+Nested`), generic types use their arity (``Context`1``).
+- Names are matched exactly. Types derived from a listed type are not accepted.
+- The type still has to be the last parameter.
+
+```csharp
+public Task<Reply> GetAsync(Request request, CallContext context = default) // <-- complying TA0001 when configured
+```
+
